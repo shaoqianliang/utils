@@ -1,0 +1,19 @@
+import random
+def redPacket(people, money):
+    result = []
+    remain = people
+    #限制单个红包最大值(平均值的两倍)
+    max_money = money / people * 2
+    for i in range(people):
+        remain -= 1
+        if remain > 0:
+            #又不能超过剩余的金额
+            m = random.randint(1, min(max_money, money - remain))
+        else:
+            m = money
+        money -= m
+        result.append(m / 100.0)
+    return result
+
+money_list = redPacket(10,3000)
+print(money_list)
